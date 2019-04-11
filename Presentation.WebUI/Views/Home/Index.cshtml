@@ -5,5 +5,21 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     @ViewBag.godzina;
+    <table class="table">
+        <tbody>
+            @using CoreLibrary.Entities.Relations
+            {
+
+            @foreach (var element in ViewData["eq"] as List<EmployeeEquipment>)
+            {
+            <tr>
+                <td>@element.Employee.FirstName</td>
+                <td>@element.Equipment.Name</td>
+            </tr>
+                break;
+            }
+            };
+        </tbody>
+    </table>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

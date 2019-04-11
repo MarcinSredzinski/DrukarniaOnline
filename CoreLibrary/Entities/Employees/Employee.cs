@@ -16,7 +16,7 @@ namespace CoreLibrary.Entities.Employees
         public DateTime WorkStartDate { get; set; }
         public bool IsManager { get; set; }
 
-        public IQueryable<EmployeeEquipment> EmployeeEquipments { get; set; }
+        public List<EmployeeEquipment> EmployeeEquipments { get; set; }
 
         public int DepartmentId { get; set; } 
         public Department Department { get; set; }

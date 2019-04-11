@@ -144,7 +144,7 @@ namespace PersistenceLibrary.Migrations
 
                     b.HasIndex("EquipmentId");
 
-                    b.ToTable("EmployeeEquipment");
+                    b.ToTable("EmployeeEquipments");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -1,5 +1,8 @@
 ﻿using ApplicationLibrary.Repository;
 using CoreLibrary.Entities.Employees;
+using CoreLibrary.Entities.Items;
+using CoreLibrary.Entities.Relations;
+using Microsoft.EntityFrameworkCore;
 using PersistenceLibrary;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +13,10 @@ namespace Persistance.RepositoryLibrary
     public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
         private DrukarniaDbContext _drukarniaDbContext;
-        public EmployeeRepository(DrukarniaDbContext _drukarniaDbContext)
-           : base(_drukarniaDbContext)
+        public EmployeeRepository(DrukarniaDbContext drukarniaDbContext)
+           : base(drukarniaDbContext)
         {
+            _drukarniaDbContext = drukarniaDbContext;
         }
 
         public async Task<IEnumerable<Employee>> GetAllEmployeesAsync()
@@ -28,16 +32,25 @@ namespace Persistance.RepositoryLibrary
                     .FirstOrDefault();
         }
 
-        //public async Task<OwnerExtended> GetOwnerWithDetailsAsync(Guid ownerId)
-        //{
-        //    var owner = await GetOwnerByIdAsync(ownerId);
+        public List<EmployeeEquipment> GetUsersEquipment(int employeeId)
+        {
+            //var employee = await GetEmployeeByIdAsync(employeeId);
 
-        //    return new OwnerExtended(owner)
-        //    {
-        //        Accounts = await RepositoryContext.Accounts
-        //            .Where(a => a.OwnerId == ownerId).ToListAsync()
-        //    };
-        //}
+            //var employeeequipment = _drukarniaDbContext.EmployeeEquipments;
+            //var employeeequipment2 = _drukarniaDbContext.EmployeeEquipments
+            //               .Include(e => e.Equipment);
+            //var employeeequipment3 = _drukarniaDbContext.EmployeeEquipments
+            //               .Include(e => e.Equipment)
+            //    .Where(ee => ee.EmployeeId == employeeId);
+            var employeeequipment4 =  _drukarniaDbContext.EmployeeEquipments
+                          .Include(e => e.Equipment)
+                          .Include(e=>e.Employee)
+                         .ToList<EmployeeEquipment>();
+            //   .Where(ee => ee.EmployeeId == employeeId).ToList<EmployeeEquipment>();
+
+            return  employeeequipment4;
+           
+        }
 
         public async Task CreateEmployeeAsync(Employee employee)
         {

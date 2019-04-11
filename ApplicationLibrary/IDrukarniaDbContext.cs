@@ -1,6 +1,7 @@
 ﻿using CoreLibrary.Entities.Company;
 using CoreLibrary.Entities.Employees;
 using CoreLibrary.Entities.Items;
+using CoreLibrary.Entities.Relations;
 using Microsoft.EntityFrameworkCore;
 
 namespace PersistenceLibrary
@@ -12,5 +13,6 @@ namespace PersistenceLibrary
         DbSet<Employee> Employees { get; set; }
         DbSet<Equipment> Equipments { get; set; }
         DbSet<EquipmentType> EquipmentTypes { get; set; }
+        DbSet<EmployeeEquipment> EmployeeEquipments { get; set; }
     }
 }

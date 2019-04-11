@@ -13,9 +13,9 @@ namespace Persistance.RepositoryLibrary
     {
         protected DrukarniaDbContext _dbContext { get; set; }
 
-        public RepositoryBase(DrukarniaDbContext repositoryContext)
+        public RepositoryBase(DrukarniaDbContext dbContext)
         {
-            this._dbContext = repositoryContext;
+            this._dbContext = dbContext;
         }
 
         public async Task<IEnumerable<T>> FindAllAsync()

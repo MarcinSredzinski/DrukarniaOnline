@@ -13,7 +13,7 @@ namespace CoreLibrary.Entities.Items
         public DateTime GivenToEmployee { get; set; }
         public DateTime ExpirationDate { get; set; }
 
-        public IQueryable<EmployeeEquipment> EmployeeEquipments { get; set; }
+        public List<EmployeeEquipment> EmployeeEquipments { get; set; }
         public int TypeId { get; set; }
         public EquipmentType Type { get; set; }
 
