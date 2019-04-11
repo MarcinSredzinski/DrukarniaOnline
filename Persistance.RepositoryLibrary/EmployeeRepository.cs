@@ -1,6 +1,5 @@
 ﻿using ApplicationLibrary.Repository;
 using CoreLibrary.Entities.Employees;
-using CoreLibrary.Entities.Items;
 using CoreLibrary.Entities.Relations;
 using Microsoft.EntityFrameworkCore;
 using PersistenceLibrary;

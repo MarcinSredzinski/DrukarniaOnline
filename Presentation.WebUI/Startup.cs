@@ -15,6 +15,9 @@ using Microsoft.Extensions.DependencyInjection;
 using PersistenceLibrary;
 using ApplicationLibrary;
 using InfrastructureLibrary;
+using Persistance.RepositoryLibrary;
+using ApplicationLibrary.Repository;
+using CoreLibrary.Entities.Company;
 
 namespace Presentation.WebUI
 {
@@ -53,7 +56,8 @@ namespace Presentation.WebUI
         }
         public void ConfigureAdditionalServices(IServiceCollection services)
         {
-            services.AddSingleton<IDateTime, MachineDateTimeTomasza>();
+            services.AddSingleton<IDateTime, MachineDateTime>();
+            services.AddTransient<IReposotoryBase<Department>, RepositoryBase<Department>>();
 
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
