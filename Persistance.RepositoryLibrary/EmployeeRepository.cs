@@ -33,14 +33,6 @@ namespace Persistance.RepositoryLibrary
 
         public List<EmployeeEquipment> GetUsersEquipment(int employeeId)
         {
-            //var employee = await GetEmployeeByIdAsync(employeeId);
-
-            //var employeeequipment = _drukarniaDbContext.EmployeeEquipments;
-            //var employeeequipment2 = _drukarniaDbContext.EmployeeEquipments
-            //               .Include(e => e.Equipment);
-            //var employeeequipment3 = _drukarniaDbContext.EmployeeEquipments
-            //               .Include(e => e.Equipment)
-            //    .Where(ee => ee.EmployeeId == employeeId);
             var employeeequipment4 =  _drukarniaDbContext.EmployeeEquipments
                           .Include(e => e.Equipment)
                           .Include(e=>e.Employee)

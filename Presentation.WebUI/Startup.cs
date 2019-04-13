@@ -60,7 +60,7 @@ namespace Presentation.WebUI
             services.AddSingleton<IDateTime, MachineDateTime>();
             services.AddTransient<IReposotoryBase<Department>, RepositoryBase<Department>>();
             services.AddTransient<IReposotoryBase<Certificate>, RepositoryBase<Certificate>>();
-
+            services.AddTransient<IReposotoryBase<EquipmentType>, EquipmentTypeRepository>();
 
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
