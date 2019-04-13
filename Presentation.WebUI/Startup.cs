@@ -18,6 +18,7 @@ using InfrastructureLibrary;
 using Persistance.RepositoryLibrary;
 using ApplicationLibrary.Repository;
 using CoreLibrary.Entities.Company;
+using CoreLibrary.Entities.Items;
 
 namespace Presentation.WebUI
 {
@@ -58,6 +59,8 @@ namespace Presentation.WebUI
         {
             services.AddSingleton<IDateTime, MachineDateTime>();
             services.AddTransient<IReposotoryBase<Department>, RepositoryBase<Department>>();
+            services.AddTransient<IReposotoryBase<Certificate>, RepositoryBase<Certificate>>();
+
 
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

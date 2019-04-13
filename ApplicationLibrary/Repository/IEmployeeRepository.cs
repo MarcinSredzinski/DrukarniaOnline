@@ -10,7 +10,6 @@ namespace ApplicationLibrary.Repository
     {
         Task<IEnumerable<Employee>> GetAllEmployeesAsync();
         Task<Employee> GetEmployeeByIdAsync(int employeeId);
-        //ToDo add  GetemployeeWithDetails
         Task CreateEmployeeAsync(Employee employee);
         Task UpdateEmployeeAsync(Employee dbEmployee, Employee employee);
         Task DeleteEmployeeAsync(Employee employee);

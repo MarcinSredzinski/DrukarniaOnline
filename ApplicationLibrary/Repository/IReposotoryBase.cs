@@ -10,6 +10,8 @@ namespace ApplicationLibrary.Repository
     {
         Task<IEnumerable<T>> FindAllAsync();
         Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> expression);
+        Task<T> GetDetailsAsync(int id);
+        Task<T> GetDetailsAsync(int? id);
         void Create(T entity);
         void Update(T entity);
         void Delete(T entity);

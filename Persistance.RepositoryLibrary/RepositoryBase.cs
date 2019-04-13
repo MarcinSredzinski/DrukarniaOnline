@@ -1,4 +1,5 @@
 ﻿using ApplicationLibrary.Repository;
+using CoreLibrary.Entities;
 using Microsoft.EntityFrameworkCore;
 using PersistenceLibrary;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Persistance.RepositoryLibrary
 {
-    public class RepositoryBase<T> : IReposotoryBase<T> where T : class
+    public class RepositoryBase<T> : IReposotoryBase<T> where T : BaseEntity
     {
         protected DrukarniaDbContext _dbContext { get; set; }
 
@@ -27,7 +28,21 @@ namespace Persistance.RepositoryLibrary
         {
             return await this._dbContext.Set<T>().Where(expression).ToListAsync();
         }
-
+        public async Task<T> GetDetailsAsync(int id)
+        {
+            return await this._dbContext.Set<T>().FirstOrDefaultAsync(i => i.Id == id);
+        }
+        public async Task<T> GetDetailsAsync(int? id)
+        {
+            if (int.TryParse(id.ToString(), out int certainId))
+            {
+                return await this._dbContext.Set<T>().FirstOrDefaultAsync(i => i.Id == certainId);
+            }
+            else
+            {
+                return null;
+            }
+        }
         public void Create(T entity)
         {
             this._dbContext.Set<T>().Add(entity);
@@ -48,6 +63,6 @@ namespace Persistance.RepositoryLibrary
             await this._dbContext.SaveChangesAsync();
         }
 
-       
+
     }
 }
