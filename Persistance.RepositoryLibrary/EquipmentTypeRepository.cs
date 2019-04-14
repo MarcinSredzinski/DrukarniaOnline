@@ -2,14 +2,12 @@
 using CoreLibrary.Entities.Items;
 using Microsoft.EntityFrameworkCore;
 using PersistenceLibrary;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Persistance.RepositoryLibrary
 {
-   public class EquipmentTypeRepository : RepositoryBase<EquipmentType>, IReposotoryBase<EquipmentType>
+    public class EquipmentTypeRepository : RepositoryBase<EquipmentType>, IRepositoryBase<EquipmentType>, IEquipmentTypeRepository
     {
         public EquipmentTypeRepository(DrukarniaDbContext dbContext) : base(dbContext)
         {
@@ -26,7 +24,7 @@ namespace Persistance.RepositoryLibrary
         {
             if (int.TryParse(id.ToString(), out int certainId))
             {
-                return await _dbContext.Set<EquipmentType>().Include(c=> c.Certificate).FirstOrDefaultAsync(i => i.Id == certainId);
+                return await _dbContext.Set<EquipmentType>().Include(c => c.Certificate).FirstOrDefaultAsync(i => i.Id == certainId);
             }
             else
             {

@@ -8,9 +8,9 @@ namespace Presentation.WebUI.Helpers
 {
     public class BaseController<T> : Controller where T : BaseEntity
     {
-        private IReposotoryBase<T> _repository;
+        private IRepositoryBase<T> _repository;
 
-        public BaseController(IReposotoryBase<T> repository)
+        public BaseController(IRepositoryBase<T> repository)
         {
             _repository = repository;
         }

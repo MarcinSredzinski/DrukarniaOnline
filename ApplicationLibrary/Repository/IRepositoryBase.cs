@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationLibrary.Repository
 {
-    public interface IReposotoryBase<T> where T : class
+    public interface IRepositoryBase<T> where T : class
     {
         Task<IEnumerable<T>> FindAllAsync();
         Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> expression);

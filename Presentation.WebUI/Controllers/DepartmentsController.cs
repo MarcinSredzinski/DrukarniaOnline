@@ -9,9 +9,9 @@ namespace Presentation.WebUI.Controllers
 {
     public class DepartmentsController : BaseController<Department>
     {
-        private IReposotoryBase<Department> _repository;
+        private IRepositoryBase<Department> _repository;
 
-        public DepartmentsController(IReposotoryBase<Department> repository):base(repository)
+        public DepartmentsController(IRepositoryBase<Department> repository):base(repository)
         {
             _repository = repository;
         }  

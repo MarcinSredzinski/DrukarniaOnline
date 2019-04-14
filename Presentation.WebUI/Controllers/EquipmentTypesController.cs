@@ -13,17 +13,17 @@ namespace Presentation.WebUI.Controllers
 {
     public class EquipmentTypesController : BaseController<EquipmentType>
     {
-        public IReposotoryBase<Certificate> _certificateRepository { get; set; }
-        public IReposotoryBase<EquipmentType> _equipmentRepository { get; set; }
+        public IRepositoryBase<Certificate> _certificateRepository { get; set; }
+        public IEquipmentTypeRepository _equipmentRepository { get; set; }
 
-        public EquipmentTypesController(IReposotoryBase<EquipmentType> repository, IReposotoryBase<Certificate> certificateRepository) : base(repository)
+        public EquipmentTypesController(IEquipmentTypeRepository repository, IRepositoryBase<Certificate> certificateRepository) : base(repository)
         {
             _equipmentRepository = repository;
             _certificateRepository = certificateRepository;
         }
         public override async Task<IActionResult> Index()
         {
-            return View(await (_equipmentRepository as EquipmentTypeRepository).FindAllWithDetailsAsync());
+            return View(await _equipmentRepository.FindAllWithDetailsAsync());
         }
         public override  IActionResult Create()
         {

@@ -14,9 +14,9 @@ namespace Presentation.WebUI.Controllers
 {
     public class CertificatesController : BaseController<Certificate>
     {
-        private readonly IReposotoryBase<Certificate> _repository;
+        private readonly IRepositoryBase<Certificate> _repository;
 
-        public CertificatesController(IReposotoryBase<Certificate> repository):base(repository)
+        public CertificatesController(IRepositoryBase<Certificate> repository):base(repository)
         {
             _repository = repository;
         }      

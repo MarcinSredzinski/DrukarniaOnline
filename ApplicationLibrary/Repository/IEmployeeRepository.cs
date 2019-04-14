@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationLibrary.Repository
 {
-    public interface IEmployeeRepository : IReposotoryBase<Employee>
+    public interface IEmployeeRepository : IRepositoryBase<Employee>
     {
         Task<IEnumerable<Employee>> GetAllEmployeesAsync();
         Task<Employee> GetEmployeeByIdAsync(int employeeId);

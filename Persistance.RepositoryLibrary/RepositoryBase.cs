@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Persistance.RepositoryLibrary
 {
-    public class RepositoryBase<T> : IReposotoryBase<T> where T : BaseEntity
+    public class RepositoryBase<T> : IRepositoryBase<T> where T : BaseEntity
     {
         protected DrukarniaDbContext _dbContext { get; set; }
 

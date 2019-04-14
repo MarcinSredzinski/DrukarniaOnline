@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ApplicationLibrary;
+using ApplicationLibrary.Repository;
+using CoreLibrary.Entities.Company;
+using CoreLibrary.Entities.Items;
+using InfrastructureLibrary;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PersistenceLibrary;
-using ApplicationLibrary;
-using InfrastructureLibrary;
 using Persistance.RepositoryLibrary;
-using ApplicationLibrary.Repository;
-using CoreLibrary.Entities.Company;
-using CoreLibrary.Entities.Items;
+using PersistenceLibrary;
 
 namespace Presentation.WebUI
 {
@@ -46,21 +41,15 @@ namespace Presentation.WebUI
             services.AddDefaultIdentity<IdentityUser>()
              .AddDefaultUI(UIFramework.Bootstrap4)
              .AddEntityFrameworkStores<DrukarniaDbContext>();
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDefaultIdentity<IdentityUser>()
-            //    .AddDefaultUI(UIFramework.Bootstrap4)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
         public void ConfigureAdditionalServices(IServiceCollection services)
         {
             services.AddSingleton<IDateTime, MachineDateTime>();
-            services.AddTransient<IReposotoryBase<Department>, RepositoryBase<Department>>();
-            services.AddTransient<IReposotoryBase<Certificate>, RepositoryBase<Certificate>>();
-            services.AddTransient<IReposotoryBase<EquipmentType>, EquipmentTypeRepository>();
+            services.AddTransient<IRepositoryBase<Department>, RepositoryBase<Department>>();
+            services.AddTransient<IRepositoryBase<Certificate>, RepositoryBase<Certificate>>();
+            services.AddTransient<IEquipmentTypeRepository, EquipmentTypeRepository>();
 
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
