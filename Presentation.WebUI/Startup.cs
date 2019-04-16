@@ -50,6 +50,8 @@ namespace Presentation.WebUI
             services.AddTransient<IRepositoryBase<Department>, RepositoryBase<Department>>();
             services.AddTransient<IRepositoryBase<Certificate>, RepositoryBase<Certificate>>();
             services.AddTransient<IEquipmentTypeRepository, EquipmentTypeRepository>();
+            services.AddTransient<IEquipmentRepository, EquipmentRepository>();
+
 
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

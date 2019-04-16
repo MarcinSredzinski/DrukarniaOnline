@@ -51,7 +51,7 @@ namespace Presentation.WebUI.Controllers
 
         private IEnumerable<Certificate> GetCertificates()
         {
-            Task<IEnumerable<Certificate>> task =Task.Run<IEnumerable<Certificate>>(async() =>  await _certificateRepository.FindAllAsync());
+            Task<IEnumerable<Certificate>> task =Task.Run(async() =>  await _certificateRepository.FindAllAsync());
             return task.Result;
         }
     }

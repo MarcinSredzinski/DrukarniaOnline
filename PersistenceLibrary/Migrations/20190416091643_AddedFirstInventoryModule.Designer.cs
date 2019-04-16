@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersistenceLibrary;
 
 namespace PersistenceLibrary.Migrations
 {
     [DbContext(typeof(DrukarniaDbContext))]
-    partial class DrukarniaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190416091643_AddedFirstInventoryModule")]
+    partial class AddedFirstInventoryModule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
