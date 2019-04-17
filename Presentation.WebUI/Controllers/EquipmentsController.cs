@@ -27,9 +27,8 @@ namespace Presentation.WebUI.Controllers
 
         public override IActionResult Create()
         {
-            var lista = GetTypes();
-            var equipmentTypes = lista.Select(e => new SelectListItem() { Text = e.Name, Value = e.Id.ToString() }).ToList<SelectListItem>();
-            ViewData["types"] = equipmentTypes;
+            var lista = GetTypes();           
+            ViewData["TypeId"] = new SelectList(lista, "Id", "Name");
             return View();
         }
 
@@ -43,12 +42,12 @@ namespace Presentation.WebUI.Controllers
                 await _repository.SaveAsync();
                 return RedirectToAction(nameof(Index));
             }
-            //  ViewData["TypeId"] = new SelectList(_context.EquipmentTypes, "Id", "Id", equipment.TypeId);
+              ViewData["TypeId"] = new SelectList(await _equipmentTypeRepository.FindAllAsync(), "Id", "Name", equipment.TypeId);
             return View(equipment);
         }
 
         // GET: Equipments/Edit/5
-        public override async Task<IActionResult> Edit(int? id)
+        public override async Task<IActionResult> Edit(int? id) //todo look into editing of items
         {
             if (id == null)
             {
@@ -60,7 +59,7 @@ namespace Presentation.WebUI.Controllers
             {
                 return NotFound();
             }
-            ViewData["TypeId"] = new SelectList(await _equipmentTypeRepository.FindAllAsync(), "Id", "Id", equipment.TypeId);
+            ViewData["TypeId"] = new SelectList(await _equipmentTypeRepository.FindAllAsync(), "Id", "Name", equipment.TypeId);
             return View(equipment);
         }
 
