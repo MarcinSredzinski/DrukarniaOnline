@@ -63,41 +63,15 @@ namespace Presentation.WebUI.Controllers
             return View(equipment);
         }
 
-        //// POST: Equipments/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Name,Produced,GivenToEmployee,ExpirationDate,TypeId,Id")] Equipment equipment)
-        //{
-        //    if (id != equipment.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(equipment);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!EquipmentExists(equipment.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["TypeId"] = new SelectList(_context.EquipmentTypes, "Id", "Id", equipment.TypeId);
-        //    return View(equipment);
-        //}
+        // POST: Equipments/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public override async Task<IActionResult> Edit(int id, [Bind("Name,Produced,GivenToEmployee,ExpirationDate,TypeId,Id")] Equipment equipment)
+        {
+            return await base.Edit(id, equipment);       
+        }
 
 
         private IEnumerable<EquipmentType> GetTypes()

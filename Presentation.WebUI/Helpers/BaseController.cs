@@ -79,7 +79,7 @@ namespace Presentation.WebUI.Helpers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Id")] T entity)
+        public virtual async Task<IActionResult> Edit(int id, [Bind("Name,Id")] T entity)
         {
             if (id != entity.Id)
             {
