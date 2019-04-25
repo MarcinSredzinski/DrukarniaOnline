@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.WebUI.Helpers;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Presentation.WebUI.Controllers
@@ -27,7 +26,7 @@ namespace Presentation.WebUI.Controllers
 
         public override IActionResult Create()
         {
-            var lista = GetTypes();           
+            var lista = GetTypes();
             ViewData["TypeId"] = new SelectList(lista, "Id", "Name");
             return View();
         }
@@ -42,7 +41,7 @@ namespace Presentation.WebUI.Controllers
                 await _repository.SaveAsync();
                 return RedirectToAction(nameof(Index));
             }
-              ViewData["TypeId"] = new SelectList(await _equipmentTypeRepository.FindAllAsync(), "Id", "Name", equipment.TypeId);
+            ViewData["TypeId"] = new SelectList(await _equipmentTypeRepository.FindAllAsync(), "Id", "Name", equipment.TypeId);
             return View(equipment);
         }
 
@@ -70,7 +69,7 @@ namespace Presentation.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public override async Task<IActionResult> Edit(int id, [Bind("Name,Produced,GivenToEmployee,ExpirationDate,TypeId,Id")] Equipment equipment)
         {
-            return await base.Edit(id, equipment);       
+            return await base.Edit(id, equipment);
         }
 
 
@@ -79,10 +78,5 @@ namespace Presentation.WebUI.Controllers
             Task<IEnumerable<EquipmentType>> task = Task.Run(async () => await _equipmentTypeRepository.FindAllAsync());
             return task.Result;
         }
-
-        //private bool EquipmentExists(int id)
-        //{
-        //    return _context.Equipments.Any(e => e.Id == id);
-        //}
     }
 }
