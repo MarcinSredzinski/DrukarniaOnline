@@ -19,6 +19,7 @@ namespace Presentation.WebUI.Controllers
             _equipmentTypeRepository = equipmentTypeRepository;
         }
 
+        // GET: Equipments
         public override async Task<IActionResult> Index()
         {
             return View(await _repository.FindAllWithDetailsAsync());

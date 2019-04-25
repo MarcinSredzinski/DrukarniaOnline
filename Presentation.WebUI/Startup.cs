@@ -2,6 +2,7 @@
 using ApplicationLibrary.Repository;
 using CoreLibrary.Entities.Company;
 using CoreLibrary.Entities.Items;
+using CoreLibrary.Entities.Relations;
 using InfrastructureLibrary;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,9 +50,10 @@ namespace Presentation.WebUI
             services.AddSingleton<IDateTime, MachineDateTime>();
             services.AddTransient<IRepositoryBase<Department>, RepositoryBase<Department>>();
             services.AddTransient<IRepositoryBase<Certificate>, RepositoryBase<Certificate>>();
+            services.AddTransient<IRepositoryBase<EmployeeEquipment>, RepositoryBase<EmployeeEquipment>>();
             services.AddTransient<IEquipmentTypeRepository, EquipmentTypeRepository>();
             services.AddTransient<IEquipmentRepository, EquipmentRepository>();
-
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

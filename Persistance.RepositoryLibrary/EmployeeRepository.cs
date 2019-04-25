@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Persistance.RepositoryLibrary
 {
-    public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
+    public class EmployeeRepository : RepositoryBase<Employee>, IRepositoryBase<Employee>, IEmployeeRepository
     {
         private DrukarniaDbContext _drukarniaDbContext;
         public EmployeeRepository(DrukarniaDbContext drukarniaDbContext)
@@ -30,6 +30,28 @@ namespace Persistance.RepositoryLibrary
             return employee.DefaultIfEmpty(new Employee())
                     .FirstOrDefault();
         }
+        public async Task<IEnumerable<Employee>> FindAllWithDetailsAsync()
+        {
+            return await _dbContext.Set<Employee>().Include(e => e.Department).ToListAsync<Employee>();
+        }
+
+        public new async Task<Employee> GetDetailsAsync(int id)
+        {
+            return await _dbContext.Set<Employee>().Include(e => e.EmployeeEquipments).Include(d=> d.Department).FirstOrDefaultAsync(i => i.Id == id);
+        }
+        public new async Task<Employee> GetDetailsAsync(int? id)
+        {
+            if (int.TryParse(id.ToString(), out int certainId))
+            {
+                return await _dbContext.Set<Employee>().Include(e => e.EmployeeEquipments).Include(d => d.Department).FirstOrDefaultAsync(i => i.Id == certainId);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
 
         public List<EmployeeEquipment> GetUsersEquipment(int employeeId)
         {

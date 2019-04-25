@@ -1,7 +1,6 @@
 ﻿using CoreLibrary.Entities.Employees;
-using System;
+using CoreLibrary.Entities.Relations;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ApplicationLibrary.Repository
@@ -9,6 +8,8 @@ namespace ApplicationLibrary.Repository
     public interface IEmployeeRepository : IRepositoryBase<Employee>
     {
         Task<IEnumerable<Employee>> GetAllEmployeesAsync();
+        Task<IEnumerable<Employee>> FindAllWithDetailsAsync();
+        List<EmployeeEquipment> GetUsersEquipment(int employeeId);
         Task<Employee> GetEmployeeByIdAsync(int employeeId);
         Task CreateEmployeeAsync(Employee employee);
         Task UpdateEmployeeAsync(Employee dbEmployee, Employee employee);
