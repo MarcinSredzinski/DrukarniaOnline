@@ -1,6 +1,7 @@
 ﻿using ApplicationLibrary;
 using ApplicationLibrary.Repository;
 using CoreLibrary.Entities.Company;
+using CoreLibrary.Entities.Inventories.It;
 using CoreLibrary.Entities.Items;
 using CoreLibrary.Entities.Relations;
 using InfrastructureLibrary;
@@ -51,6 +52,8 @@ namespace Presentation.WebUI
             services.AddTransient<IRepositoryBase<Department>, RepositoryBase<Department>>();
             services.AddTransient<IRepositoryBase<Certificate>, RepositoryBase<Certificate>>();
             services.AddTransient<IRepositoryBase<EmployeeEquipment>, RepositoryBase<EmployeeEquipment>>();
+            services.AddTransient<IRepositoryBase<DeviceInfo>, RepositoryBase<DeviceInfo>>();
+            services.AddTransient<IRepositoryBase<Software>, RepositoryBase<Software>>();
             services.AddTransient<IEquipmentTypeRepository, EquipmentTypeRepository>();
             services.AddTransient<IEquipmentRepository, EquipmentRepository>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();

@@ -14,16 +14,16 @@ namespace Presentation.WebUI.Controllers
     public class EquipmentTypesController : BaseController<EquipmentType>
     {
         public IRepositoryBase<Certificate> _certificateRepository { get; set; }
-        public IEquipmentTypeRepository _equipmentRepository { get; set; }
+        public IEquipmentTypeRepository _equipmentTypesRepository { get; set; }
 
         public EquipmentTypesController(IEquipmentTypeRepository repository, IRepositoryBase<Certificate> certificateRepository) : base(repository)
         {
-            _equipmentRepository = repository;
+            _equipmentTypesRepository = repository;
             _certificateRepository = certificateRepository;
         }
         public override async Task<IActionResult> Index()
         {
-            return View(await _equipmentRepository.FindAllWithDetailsAsync());
+            return View(await _equipmentTypesRepository.FindAllWithDetailsAsync());
         }
         public override  IActionResult Create()
         {
@@ -41,11 +41,38 @@ namespace Presentation.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                _equipmentRepository.Create(entity);
-                await _equipmentRepository.SaveAsync();
+                _equipmentTypesRepository.Create(entity);
+                await _equipmentTypesRepository.SaveAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(entity);
+        }
+
+        // GET: EquipmentTypes/Edit/5
+        public override async Task<IActionResult> Edit(int? id) //todo look into editing of items
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var equipment = await _equipmentTypesRepository.GetDetailsAsync(id);
+            if (equipment == null)
+            {
+                return NotFound();
+            }
+            ViewData["CertificateId"] = new SelectList(await _certificateRepository.FindAllAsync(), "Id", "Name", equipment.CertificateId);
+            return View(equipment);
+        }
+
+        // POST: Equipments/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public override async Task<IActionResult> Edit(int id, [Bind("Name,Producent,Size,SpecialDateTime,CertificateId,Id")] EquipmentType equipmentType)
+        {
+            return await base.Edit(id, equipmentType);
         }
 
 

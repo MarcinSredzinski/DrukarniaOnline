@@ -1,0 +1,43 @@
+﻿@model CoreLibrary.Entities.Inventories.It.DeviceInfo
+
+@{
+    ViewData["Title"] = "Details";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<h1>Szczegóły</h1>
+
+<div>
+    <h4>Informacje o urządzeniu</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Data zakupu
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateOfPurchase)
+        </dd>
+        <dt class="col-sm-2">
+            Posiadacz
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Owner)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edytuj</a> |
+    <a asp-action="Index">Wróć do listy</a>
+</div>
+
+<script type="text/javascript" src="~/lib/jquery/src/jquery.qrcode.js"></script>
+<script type="text/javascript" src="~/lib/jquery/src/qrcode.js"></script>
+<p>poczatekAdresu/@Context.Request.Path</p>
+
+
+<div id="qrcodeTable"></div>
+<script>
+    jQuery('#qrcodeTable').qrcode({
+        render: "table",
+        text: "@Context.Request.Path"
+    });   
+</script>

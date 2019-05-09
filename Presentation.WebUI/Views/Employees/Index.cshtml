@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CoreLibrary.Entities.Employees.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Pracownicy</h1>
+
+<p>
+    <a asp-action="Create">Stwórz nowego pracownika</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+             Imię
+            </th>
+            <th>
+             Nazwisko
+            </th>
+            <th>
+             Data urodzenia
+            </th>
+            <th>
+             Data rozpoczęcia pracy
+            </th>
+            <th>
+             Kierownik
+            </th>
+            <th>
+             Dział
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsManager)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edycja</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
